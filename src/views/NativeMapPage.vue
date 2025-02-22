@@ -1,9 +1,9 @@
 <template>
-    <NativeMapContainer />
+    <!-- <NativeMapContainer /> -->
 </template>
 
 <script setup>
-import NativeMapContainer from '@/components/NativeMapContainer.vue';
+// import NativeMapContainer from '@/components/NativeMapContainer.vue';
 </script>
 
 <style scoped>
