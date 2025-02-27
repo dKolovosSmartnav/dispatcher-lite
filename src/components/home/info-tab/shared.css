@@ -1,0 +1,12 @@
+/* Fragment styles */
+.fragment {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    height: auto;
+    border-radius: 10px;
+    width: inherit;
+}
