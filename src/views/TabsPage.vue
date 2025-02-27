@@ -24,5 +24,23 @@
 
 <script setup lang="ts">
 import { IonTabBar, IonTabButton, IonTabs, IonLabel, IonIcon, IonPage, IonRouterOutlet } from '@ionic/vue';
+import { VoiceRecorder } from 'capacitor-voice-recorder';
 import { chatbubble, ellipse, square, triangle } from 'ionicons/icons';
+
+async function hasRecordingPermission() {
+    return await VoiceRecorder.hasAudioRecordingPermission();
+}
+
+const getPermissionResult = async () => {
+
+    const permission = await VoiceRecorder.requestAudioRecordingPermission();
+    if (permission && permission.value) {
+        return true;
+    } else {
+        alert("Recording permission is denied");
+        return false;
+    }
+
+}
+
 </script>
