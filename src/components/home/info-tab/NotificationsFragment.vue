@@ -2,14 +2,9 @@
     <ion-content>
 
         <div class="notification-grid">
-            <div class="bubble alert-bubble">
-                <p>This is an alert notification bubble!</p>
-            </div>
-            <div class="bubble info-bubble">
-                <p>This is a simple info bubble!</p>
-            </div>
-            <div class="bubble critical-alert-bubble">
-                <p>This is a crritical alert notiication bubble!</p>
+            <div v-for="(notification, index) in store.notifications" :key="index"
+                :class="['bubble', mapNotificationType(notification.type)]">
+                <p>{{ notification.message }}</p>
             </div>
         </div>
 
@@ -17,7 +12,24 @@
 </template>
 
 <script setup lang="ts">
+import { useNotificationStore } from '@/stores/NotificationStore';
+import { onMounted } from 'vue';
 
+
+const store = useNotificationStore();
+
+onMounted( () => {
+    store.fetchNotifications();
+})
+
+const mapNotificationType = (type: string) => {
+    switch (type) {
+        case 'alert': return 'alert-bubble';
+        case 'info': return 'info-bubble';
+        case 'critical': return 'critical-alert-bubble';
+        default: return '';
+    }
+};
 
 </script>
 
