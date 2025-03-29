@@ -12,14 +12,28 @@
         </ion-toolbar>
       </ion-header>
 
-      <ion-content class="">
-
-      </ion-content>
+      <div class="fragment-container">
+        <RouteFragment/>  
+      </div>
+      
 
     </ion-content>
   </ion-page>
 </template>
 
 <script setup lang="ts">
+import RouteFragment from '@/components/home/route-tab/RouteFragment.vue';
 import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/vue';
 </script>
+
+<style lang="css" scoped>
+
+.fragment-container{
+  width: 100%;
+  height: 100%;
+  max-width: 800px;
+  padding: 0 20px;
+  margin: 0 auto;
+}
+
+</style>

@@ -1,7 +1,6 @@
 import { Notification } from "@/domain/repositories/NotificationRepository";
 import { NotificationRepositoryImpl } from "@/data/repo/NotificationRepositoryImpl";
 import { defineStore } from 'pinia'
-import { notifications } from "ionicons/icons";
 
 const repository = new NotificationRepositoryImpl();
 

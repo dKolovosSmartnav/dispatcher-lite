@@ -64,18 +64,18 @@ const mapNotificationType = (type: string) => {
 }
 
 
-.notification-grid {
-    display: grid;
-    grid-auto-rows: auto;
-    grid-template-columns: 1fr;
-    /* flex-direction: column; Stack items vertically */
-    /* align-items: center; Center notifications */
-    gap: 10px;
-    /* Space between notifications */
-    height: auto;
-    width: inherit;
-    margin-top: 10px;
-}
+    .notification-grid {
+        display: grid;
+        grid-auto-rows: auto;
+        grid-template-columns: 1fr;
+        /* flex-direction: column; Stack items vertically */
+        /* align-items: center; Center notifications */
+        gap: 10px;
+        /* Space between notifications */
+        height: auto;
+        width: inherit;
+        margin-top: 10px;
+    }
 
 @media (min-width: 600px) {
     .bubble {}
