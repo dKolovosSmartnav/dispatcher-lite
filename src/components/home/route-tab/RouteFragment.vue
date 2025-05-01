@@ -24,7 +24,7 @@ onMounted(() => {
 </script>
 
 <template>
-    <IonContent>
+    <ion-content>
         <RoutePointItem v-for="(item, index) in routeStore.routePoints" :key="index" :routePoint="item" :pointType="routePointType(item.type)"/>
-    </IonContent>
+    </ion-content>
 </template>

@@ -1,8 +1,8 @@
 import type { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'third.project',
-  appName: 'third-project',
+  appId: 'com.personal.dispatcherlite',
+  appName: 'dispatcher-app',
   webDir: 'dist'
 };
 

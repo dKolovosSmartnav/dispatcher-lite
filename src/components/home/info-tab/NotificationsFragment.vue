@@ -13,6 +13,7 @@
 
 <script setup lang="ts">
 import { useNotificationStore } from '@/stores/NotificationStore';
+import { IonContent } from '@ionic/vue';
 import { onMounted } from 'vue';
 
 
