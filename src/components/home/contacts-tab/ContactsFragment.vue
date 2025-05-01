@@ -1,17 +1,15 @@
 <template>
 
-    <IonPage>
 
-        <ion-content>
-            <ion-list :inset="true">
-                <ion-item v-for="(contact, index) in contactStore.contacts" :key="index"
-                    @click="moveToChat(contact.contactId)">
-                    <ion-label> {{ contact.name }} </ion-label>
-                </ion-item>
-            </ion-list>
-        </ion-content>
+    <ion-content>
+        <ion-list :inset="true">
+            <ion-item v-for="(contact, index) in contactStore.contacts" :key="index"
+                @click="moveToChat(contact.contactId)">
+                <ion-label> {{ contact.name }} </ion-label>
+            </ion-item>
+        </ion-list>
+    </ion-content>
 
-    </IonPage>
 
 </template>
 

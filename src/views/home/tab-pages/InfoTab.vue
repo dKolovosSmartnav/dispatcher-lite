@@ -17,11 +17,11 @@
    
   -->
   <IonPage>
-    <ion-header>
+    <IonHeader>
       <ion-toolbar>
         <ion-title>Info</ion-title>
       </ion-toolbar>
-    </ion-header>
+    </IonHeader>
     <ion-content :fullscreen="true">
       <IonHeader collapse="condense">
         <IonToolbar>
