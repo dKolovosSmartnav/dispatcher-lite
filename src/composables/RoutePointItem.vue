@@ -1,47 +1,41 @@
 <template>
-    <div :class="['route-item', pointType]">
-        <p>{{ routePoint.location.address }}</p>
-        <p>{{ routePoint.location.friendlyAddress }}</p>
-        <p>{{ routePoint.type.toUpperCase() }}</p>
-        <p>{{ routePoint.status.toUpperCase() }}</p>
-    </div>
+    <ion-item :class="['route-item', routePoint.status]">
+        <div>
+            <p>{{ routePoint.location.address }}</p>
+            <p>{{ routePoint.location.friendlyAddress }}</p>
+            <p>{{ routePoint.type.toUpperCase() }}</p>
+            <p>{{ routePoint.status.toUpperCase() }}</p>
+        </div>
 
+    </ion-item>
 </template>
 
 <script setup>
 
-defineProps({ 
+import { IonItem } from '@ionic/vue';
+
+defineProps({
     routePoint: Object,
     pointType: String
- });
+});
 
 </script>
 
 <style>
-
-.route-item{
-    padding: 8px;
-    border-bottom: 1px solid #bbb;
+.route-item {
+    margin-top: 4px;
 }
 
-.route-item.service{
-    
+.route-item.post-poned {
+    color: dodgerblue;
 }
 
-.route-item.delivery{
-
+.route-item.cancelled {
+    color: #c20000;
 }
 
-.route-item.pickup{
-
-}
-
-.route-item.start{
-
-}
-
-.route-item.finish{
-
+.route-item.serviced {
+    color: #00a53a;
 }
 
 </style>

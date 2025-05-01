@@ -3,6 +3,7 @@ import RoutePointItem from '@/composables/RoutePointItem.vue';
 import { useRouteStore } from '@/stores/routeStore';
 import { IonContent } from '@ionic/vue';
 import { onMounted } from 'vue';
+import { IonList } from '@ionic/vue';
 
 const routeStore = useRouteStore();
 
@@ -25,6 +26,14 @@ onMounted(() => {
 
 <template>
     <ion-content>
-        <RoutePointItem v-for="(item, index) in routeStore.routePoints" :key="index" :routePoint="item" :pointType="routePointType(item.type)"/>
+        <ion-list>
+            <RoutePointItem v-for="(item, index) in routeStore.routePoints" :key="index" :routePoint="item" :pointType="routePointType(item.type)"/>
+        </ion-list>
     </ion-content>
 </template>
+
+<style>
+ion-content {
+  --padding-bottom: var(--ion-safe-area-bottom, 0px);
+}
+</style>
