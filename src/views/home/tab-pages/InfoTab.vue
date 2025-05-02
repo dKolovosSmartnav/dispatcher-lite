@@ -16,18 +16,18 @@
     -- Tasks (done, scheduled, aborted, cancelled,...)
    
   -->
-  <ion-page>
-    <ion-header>
+  <IonPage>
+    <IonHeader>
       <ion-toolbar>
         <ion-title>Info</ion-title>
       </ion-toolbar>
-    </ion-header>
+    </IonHeader>
     <ion-content :fullscreen="true">
-      <ion-header collapse="condense">
-        <ion-toolbar>
-          <ion-title size="large">Information</ion-title>
-        </ion-toolbar>
-      </ion-header>
+      <IonHeader collapse="condense">
+        <IonToolbar>
+          <IonTitle size="large">Information</IonTitle>
+        </IonToolbar>
+      </IonHeader>
 
       <!-- That's the fragment for the tasks-->
       <div class="grid-container">
@@ -36,7 +36,7 @@
 
       </div>
     </ion-content>
-  </ion-page>
+  </IonPage>
 </template>
 
 <script setup lang="ts">

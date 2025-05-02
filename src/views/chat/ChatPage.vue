@@ -1,11 +1,62 @@
-<script setup>
-import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonFooter, IonItem, IonInput, IonButton, IonIcon } from '@ionic/vue';
-import { onMounted, ref } from 'vue';
-import { micSharp, sendSharp, stopSharp, playOutline, pauseOutline } from 'ionicons/icons';
-import { VoiceRecorder } from 'capacitor-voice-recorder';
+<template>
+    <IonPage>
+        <IonHeader>
+            <IonToolbar>
+                <!-- ⬅️ Custom Back Button -->
+                <IonButtons slot="start">
+                    <IonButton @click="switchToContactsFragment">
+                        <IonIcon :icon="arrowBack" class="back-icon"/>
+                    </IonButton>
+                </IonButtons>
 
+                <IonTitle>Chat</IonTitle>
+            </IonToolbar>
+        </IonHeader>
+        <ion-content>
+            <div class="chat-container">
+                <div v-for="(message, index) in messages" :key="index" :class="['message', message.sender]"
+                    @click="playAudio(message)">
+                    <template v-if="message.type == 'text'">
+                        {{ message.text }}
+                    </template>
+                    <template v-else-if="messages.type == 'audio'">
+                        <IonIcon :icon="playOutline" class="play-audio-icon" v-if="!message.isPlaying"></IonIcon>
+                        <IonIcon :icon="pauseOutline" class="play-audio-icon" v-else></IonIcon>
+                    </template>
+                </div>
+            </div>
+        </ion-content>
+        <IonFooter>
+            <IonToolbar>
+                <IonItem>
+                    <IonInput v-model="newMessage" placeholder="Type a message..." @keyup.enter="sendMessage" />
+                    <IonButton fill="clear" @touchstart="startRecording" @touchend="stopRecording"
+                        @mousedown="startRecording" @mouseup="startRecording" class="mic-button">
+                        <IonIcon aria-hidden="true" :icon="isRecording ? stopSharp : micSharp" class="mic-icon">
+                        </IonIcon>
+                    </IonButton>
+                    <IonButton fill="clear" @click="sendMessage" class="send-button">
+                        <IonIcon aria-hidden="true" :icon="sendSharp" class="send-icon">
+                        </IonIcon>
+                    </IonButton>
+                </IonItem>
+            </IonToolbar>
+        </IonFooter>
+    </IonPage>
+</template>
+
+<script setup>
+import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonFooter, IonItem, IonInput, IonButton, IonIcon, IonButtons } from '@ionic/vue';
+import { onMounted, ref } from 'vue';
+import { micSharp, sendSharp, stopSharp, playOutline, pauseOutline, arrowBack } from 'ionicons/icons';
+import { VoiceRecorder } from 'capacitor-voice-recorder';
+import { useRoute, useRouter } from 'vue-router';
+
+const route = useRoute();
+const router = useRouter();
 
 onMounted(async () => {
+    contactId.value = route.query.contactId;
     const permissionResult = await VoiceRecorder.hasAudioRecordingPermission();
     hasPermission.value = permissionResult.value;
 });
@@ -20,6 +71,7 @@ const newMessage = ref('');
 const isRecording = ref(false);
 const audioPlayer = ref(new Audio());
 const hasPermission = ref(false);
+const contactId = ref(-1);
 
 const sendMessage = () => {
     if (newMessage.value.trim() === '') return;
@@ -53,14 +105,14 @@ async function startRecording() {
 
     if (!isRecording.value) {
         //Start recording
-        if(!hasPermission.value){
+        if (!hasPermission.value) {
             hasPermission.value = getPermissionResult();
             return;
-        }else{
+        } else {
             await VoiceRecorder.startRecording();
             isRecording.value = true;
         }
-        
+
     }
 }
 
@@ -108,53 +160,11 @@ const base64ToBlob = (base64, mimeType) => {
     return new Blob([byteArray], { type: mimeType });
 };
 
-</script>
+async function switchToContactsFragment() {
+    router.back();
+}
 
-<template>
-    <ion-page>
-        <ion-header>
-            <ion-toolbar>
-                <ion-title>Chat</ion-title>
-            </ion-toolbar>
-        </ion-header>
-        <ion-content>
-            <div class="chat-container">
-                <div v-for="(message, index) in messages" :key="index" :class="['message', message.sender]"
-                    @click="playAudio(message)">
-                    <template v-if="message.type == 'text'">
-                        {{ message.text }}
-                    </template>
-                    <template v-else-if="messages.type == 'audio'">
-                        <ion-icon :icon="playOutline" class="play-audio-icon" v-if="!message.isPlaying"></ion-icon>
-                        <ion-icon :icon="pauseOutline" class="play-audio-icon" v-else></ion-icon>
-                    </template>
-                </div>
-            </div>
-        </ion-content>
-        <ion-footer>
-            <ion-toolbar>
-                <ion-item>
-                    <ion-input v-model="newMessage" placeholder="Type a message..." @keyup.enter="sendMessage" />
-                    <ion-button 
-                        fill="clear" 
-                        @touchstart="startRecording" 
-                        @touchend="stopRecording"
-                        @mousedown="startRecording"
-                        @mouseup="startRecording"
-                        class="mic-button"
-                        >
-                        <ion-icon aria-hidden="true" :icon="isRecording ? stopSharp : micSharp" class="mic-icon">
-                        </ion-icon>
-                    </ion-button>
-                    <ion-button fill="clear" @click="sendMessage" class="send-button">
-                        <ion-icon aria-hidden="true" :icon="sendSharp" class="send-icon">
-                        </ion-icon>
-                    </ion-button>
-                </ion-item>
-            </ion-toolbar>
-        </ion-footer>
-    </ion-page>
-</template>
+</script>
 
 <style scoped>
 .chat-container {
@@ -192,10 +202,12 @@ const base64ToBlob = (base64, mimeType) => {
     align-items: center;
 }
 
+.back-icon,
 .mic-icon {
     font-size: 24px;
-    color: 007bff;
+    color: #007bff;
 }
+
 
 /* Send Button */
 .send-button {

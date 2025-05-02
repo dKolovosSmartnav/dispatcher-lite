@@ -1,33 +1,36 @@
 <template>
-  <ion-page>
+  <IonPage>
 
-    <ion-tabs>
-      <ion-router-outlet></ion-router-outlet>
+    <IonContent>
+      <IonTabs>
+        <IonRouterOutlet></IonRouterOutlet>
 
-      <ion-tab-bar slot="bottom">
-        <ion-tab-button tab="info" href="/tabs/info">
-          <ion-icon aria-hidden="true" :icon="information" />
-          <ion-label>Info</ion-label>
-        </ion-tab-button>
+        <IonTabBar slot="bottom">
+          <IonTabButton tab="info" href="/tabs/info">
+            <IonIcon aria-hidden="true" :icon="information" />
+            <IonLabel>Info</IonLabel>
+          </IonTabButton>
 
-        <ion-tab-button tab="route" href="/tabs/route">
-          <ion-icon aria-hidden="true" :icon="map" />
-          <ion-label>Route</ion-label>
-        </ion-tab-button>
+          <IonTabButton tab="route" href="/tabs/route">
+            <IonIcon aria-hidden="true" :icon="map" />
+            <IonLabel>Route</IonLabel>
+          </IonTabButton>
 
-        <ion-tab-button tab="chat" href="/tabs/chat">
-          <ion-icon aria-hidden="true" :icon="chatbubble" />
-          <ion-label>Dispatch</ion-label>
-        </ion-tab-button>
-      </ion-tab-bar>
+          <IonTabButton tab="contacts" href="/tabs/contacts">
+            <IonIcon aria-hidden="true" :icon="person" />
+            <IonLabel>Contacts</IonLabel>
+          </IonTabButton>
+        </IonTabBar>
 
-    </ion-tabs>
+      </IonTabs>
+    </IonContent>
 
-  </ion-page>
+
+  </IonPage>
 </template>
 
 <script setup lang="ts">
-import { IonTabBar, IonTabButton, IonTabs, IonLabel, IonIcon, IonPage, IonRouterOutlet } from '@ionic/vue';
-import { chatbubble, information, map, stop } from 'ionicons/icons';
+import { IonTabBar, IonTabButton, IonTabs, IonLabel, IonIcon, IonPage, IonRouterOutlet, IonContent } from '@ionic/vue';
+import { information, map, person } from 'ionicons/icons';
 
 </script>
