@@ -4,125 +4,7 @@ export class remoteRouteRepository implements routeRepository {
 
     async fetchRoutePoints(): Promise<RoutePoint[]> {
         return new Promise(resolve => {
-            setTimeout(
-                () => {
-                    resolve(
-                        [
-                            {
-                                type: 'start',
-                                location: {
-                                    lat: new Float32Array([37.7749]),
-                                    lng: new Float32Array([-122.4194]),
-                                    address: '1 Market St, San Francisco, CA',
-                                    friendlyAddress: 'San Francisco Start Point',
-                                },
-                                visited: true,
-                                status: 'serviced',
-                            },
-                            {
-                                type: 'pickup',
-                                location: {
-                                    lat: new Float32Array([37.7849]),
-                                    lng: new Float32Array([-122.4094]),
-                                    address: '500 Howard St, San Francisco, CA',
-                                    friendlyAddress: 'Howard Pickup',
-                                },
-                                visited: true,
-                                status: 'serviced',
-                            },
-                            {
-                                type: 'delivery',
-                                location: {
-                                    lat: new Float32Array([37.7949]),
-                                    lng: new Float32Array([-122.3994]),
-                                    address: '100 Pine St, San Francisco, CA',
-                                    friendlyAddress: 'Pine Delivery',
-                                },
-                                visited: false,
-                                status: 'post-poned',
-                            },
-                            {
-                                type: 'service',
-                                location: {
-                                    lat: new Float32Array([37.8049]),
-                                    lng: new Float32Array([-122.3894]),
-                                    address: 'Pier 39, San Francisco, CA',
-                                    friendlyAddress: 'Tourist Service Spot',
-                                },
-                                visited: false,
-                                status: 'cancelled',
-                            },
-                            {
-                                type: 'pickup',
-                                location: {
-                                    lat: new Float32Array([37.7740]),
-                                    lng: new Float32Array([-122.4313]),
-                                    address: '200 Dolores St, San Francisco, CA',
-                                    friendlyAddress: 'Dolores Pickup',
-                                },
-                                visited: true,
-                                status: 'serviced',
-                            },
-                            {
-                                type: 'delivery',
-                                location: {
-                                    lat: new Float32Array([37.7689]),
-                                    lng: new Float32Array([-122.4148]),
-                                    address: 'Castro St, San Francisco, CA',
-                                    friendlyAddress: 'Castro Delivery',
-                                },
-                                visited: false,
-                                status: 'post-poned',
-                            },
-                            {
-                                type: 'service',
-                                location: {
-                                    lat: new Float32Array([37.7599]),
-                                    lng: new Float32Array([-122.4148]),
-                                    address: 'Mission Dolores Park, San Francisco, CA',
-                                    friendlyAddress: 'Park Maintenance Service',
-                                },
-                                visited: true,
-                                status: 'serviced',
-                            },
-                            {
-                                type: 'pickup',
-                                location: {
-                                    lat: new Float32Array([37.7610]),
-                                    lng: new Float32Array([-122.4241]),
-                                    address: '16th St, San Francisco, CA',
-                                    friendlyAddress: '16th Street Pickup',
-                                },
-                                visited: true,
-                                status: 'serviced',
-                            },
-                            {
-                                type: 'delivery',
-                                location: {
-                                    lat: new Float32Array([37.7510]),
-                                    lng: new Float32Array([-122.4477]),
-                                    address: 'Twin Peaks Blvd, San Francisco, CA',
-                                    friendlyAddress: 'Twin Peaks Delivery',
-                                },
-                                visited: false,
-                                status: 'cancelled',
-                            },
-                            {
-                                type: 'end',
-                                location: {
-                                    lat: new Float32Array([37.7430]),
-                                    lng: new Float32Array([-122.4750]),
-                                    address: 'Ocean Beach, San Francisco, CA',
-                                    friendlyAddress: 'San Francisco End Point',
-                                },
-                                visited: false,
-                                status: 'post-poned',
-                            }
-                        ]
-                    )
-                },
-                2000
-            );
+            resolve(mockRoute);
         })
     }
     setStatus(routePoint: RoutePoint, status: string): Promise<RoutePoint> {
@@ -133,3 +15,154 @@ export class remoteRouteRepository implements routeRepository {
     }
 
 }
+
+const mockRoute: RoutePoint[] = [
+    {
+      type: 'stop',
+      location: {
+        lat: 37.7749,
+        lng: -122.4194,
+        address: '123 Market St, San Francisco, CA 94103',
+        friendlyAddress: 'ACME Warehouse',
+        specialInstructions: ['Use loading dock entrance on 2nd St.'],
+        notes: ['Gate code: 1234#']
+      },
+      visited: false,
+      status: 'serviced',
+      timeWindow: '2025-05-03T09:00:00Z/2025-05-03T12:00:00Z',
+      contacts: [
+        {
+          name: 'John Doe',
+          phoneNumber: '+1-555-123-4567',
+          floor: 'Ground',
+          department: 'Receiving',
+          nameUnder: 'Main Desk',
+          notes: 'Ask for John at the front office'
+        }
+      ],
+      jobs: [
+        {
+          serviceType: 'pickup',
+          status: 'pending',
+          qrCode: 'JOB123PICKUP',
+          specialInstructions: ['Handle with care', 'Pickup from dock #3'],
+          notes: ['Confirm item count before loading'],
+          items: [
+            {
+              description: 'Empty Pallets',
+              quantity: 10,
+              qrCode: 'ITEM-PICK-001',
+              specialInstructions: ['Stack flat'],
+              notes: ['Customer expects 10 units']
+            },
+            {
+              description: 'Return Boxes',
+              quantity: 5,
+              qrCode: 'ITEM-PICK-002',
+              specialInstructions: ['Seal before loading'],
+              notes: []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      type: 'stop',
+      location: {
+        lat: 37.7892,
+        lng: -122.4016,
+        address: '456 Mission St, San Francisco, CA 94105',
+        friendlyAddress: 'TechCorp HQ',
+        specialInstructions: ['Call reception on arrival'],
+        notes: []
+      },
+      visited: false,
+      status: 'serviced',
+      timeWindow: '2025-05-03T13:00:00Z/2025-05-03T15:00:00Z',
+      contacts: [
+        {
+          name: 'Jane Smith',
+          phoneNumber: '+1-555-987-6543',
+          floor: '2nd',
+          department: 'IT',
+          nameUnder: 'Reception',
+          notes: 'Deliver equipment to IT department'
+        }
+      ],
+      jobs: [
+        {
+          serviceType: 'delivery',
+          status: 'pending',
+          qrCode: 'JOB456DELIVERY',
+          specialInstructions: ['Deliver to IT storage room'],
+          notes: [],
+          items: [
+            {
+              description: 'Laptops',
+              quantity: 3,
+              qrCode: 'ITEM-DEL-001',
+              specialInstructions: ['Verify serial numbers'],
+              notes: []
+            },
+            {
+              description: 'Monitors',
+              quantity: 5,
+              qrCode: 'ITEM-DEL-002',
+              specialInstructions: [],
+              notes: []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      type: 'stop',
+      location: {
+        lat: 37.7600,
+        lng: -122.4477,
+        address: '789 Castro St, San Francisco, CA 94114',
+        friendlyAddress: 'Medical Center',
+        specialInstructions: ['Park at rear entrance'],
+        notes: ['Access code: 5678#']
+      },
+      visited: false,
+      status: 'serviced',
+      timeWindow: '2025-05-03T16:00:00Z/2025-05-03T18:00:00Z',
+      contacts: [
+        {
+          name: 'Michael Johnson',
+          phoneNumber: '+1-555-222-3333',
+          floor: '1st',
+          department: 'Pharmacy',
+          nameUnder: 'Reception',
+          notes: 'Deliver meds to pharmacy stockroom'
+        }
+      ],
+      jobs: [
+        {
+          serviceType: 'delivery',
+          status: 'pending',
+          qrCode: 'JOB789DELIVERY',
+          specialInstructions: ['Requires signature on delivery'],
+          notes: ['Check expiration dates before leaving'],
+          items: [
+            {
+              description: 'Medical Supplies',
+              quantity: 12,
+              qrCode: 'ITEM-DEL-003',
+              specialInstructions: ['Store below 25°C'],
+              notes: []
+            },
+            {
+              description: 'Vaccine Kits',
+              quantity: 8,
+              qrCode: 'ITEM-DEL-004',
+              specialInstructions: ['Keep refrigerated'],
+              notes: []
+            }
+          ]
+        }
+      ]
+    }
+  ];
+  
