@@ -23,7 +23,7 @@
 
 <script setup lang="ts">
 
-import { IonContent, IonPage, IonHeader, IonToolbar, IonButtons, IonIcon, IonTitle } from "@ionic/vue";
+import { IonContent, IonPage, IonHeader, IonToolbar, IonButtons, IonButton, IonIcon, IonTitle } from "@ionic/vue";
 import { arrowBack } from 'ionicons/icons';
 import { onMounted, ref } from "vue";
 import { useRoute, useRouter } from 'vue-router';
@@ -31,10 +31,11 @@ import { useRoute, useRouter } from 'vue-router';
 const route = useRoute();
 const router = useRouter();
 
-const jobObject = ref();
+const routePointObject = ref();
 
 onMounted(async () => {
-    jobObject.value = route.query.job;
+    routePointObject.value = route.query.routePoint;
+    console.log(routePointObject);
 
 });
 
