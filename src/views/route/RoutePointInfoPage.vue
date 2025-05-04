@@ -31,11 +31,13 @@ import { useRoute, useRouter } from 'vue-router';
 const route = useRoute();
 const router = useRouter();
 
-const routePointObject = ref(Object);
+const routePointId = ref();
 
 onMounted(async () => {
-    let query = route.query.routePoint?.toString;
-    console.log(query);
+    routePointId.value = route.query.routePointId;
+    console.log(routePointId.value);
+    // Fetch route point data using routePointId
+    
 
 });
 

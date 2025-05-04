@@ -1,5 +1,5 @@
 <template>
-    <ion-item :class="['route-item', routePoint.status]" @click="openRoutePointInfo(routePoint)">
+    <ion-item :class="['route-item', routePoint.status]" @click="openRoutePointInfo(routePoint.id)">
         <div>
             <p>{{ routePoint.location.address }}</p>
             <p>{{ routePoint.location.friendlyAddress }}</p>
@@ -23,8 +23,8 @@ defineProps({
     pointType: String
 });
 
-function openRoutePointInfo(routePoint) {
-    router.push({ path: '/routePointInfo', query: { routePoint: routePoint } });
+function openRoutePointInfo(routePointId) {
+    router.push({ path: '/routePointInfo', query: { routePointId: routePointId } });
 }
 
 </script>
