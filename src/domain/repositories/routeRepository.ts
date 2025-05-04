@@ -1,4 +1,4 @@
-export type Contact = {
+export type RoutePointContact = {
     id: number,
     name: string,
     phoneNumber: string,
@@ -18,26 +18,6 @@ export type Location = {
     notes?: string[]
 }
 
-export type Item = {
-    id: number,
-    description: string,
-    quantity: number,
-    qrCode: string, // required → used to scan & find item inside job
-    specialInstructions?: string[],
-    notes?: string[]
-}
-
-export type Job = {
-    id: number,           // UUID
-    orderNumber: number,   // display order
-    serviceType: 'pickup' | 'delivery' | 'service',
-    status: 'pending' | 'en_route' | 'arrived' | 'in_progress' | 'completed' | 'cancelled',
-    items: Item[],
-    qrCode: string, // required → used to scan & find job
-    specialInstructions?: string[],
-    notes?: string[]
-}
-
 export type RoutePoint = {
     id: number,            // UUID
     orderNumber: number,   // display order
@@ -46,7 +26,7 @@ export type RoutePoint = {
     visited: boolean,
     status: 'cancelled' | 'postponed' | 'serviced',
     timeWindow: string,
-    contacts: Contact[],
+    contacts: RoutePointContact[],
     jobs: Job[]
 }
 
@@ -56,3 +36,5 @@ export interface routeRepository {
     setStatus(routePoint: RoutePoint, status: string): Promise<RoutePoint> /*New route point after update */
     setVisited(routePoint: RoutePoint, isVisited: true): Promise<RoutePoint>
 }
+
+import { Job } from "./jobRepository";

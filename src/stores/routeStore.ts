@@ -13,4 +13,4 @@ export const useRouteStore = defineStore('route', {
             this.routePoints = await repository.fetchRoutePoints();
         }
     }
-})
+});
