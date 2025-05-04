@@ -33,6 +33,7 @@ export type RoutePoint = {
 
 export interface routeRepository {
     fetchRoutePoints(): Promise<RoutePoint[]>
+    fetchRoutePoint(id: number): Promise<RoutePoint>
     setStatus(routePoint: RoutePoint, status: string): Promise<RoutePoint> /*New route point after update */
     setVisited(routePoint: RoutePoint, isVisited: true): Promise<RoutePoint>
 }
