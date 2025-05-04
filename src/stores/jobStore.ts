@@ -11,7 +11,7 @@ export const useJobStore = defineStore('job', {
     }),
     actions: {
         async fetchRouteJobs(routeId: number){
-            this.routeJobs = await repository.fetchRouteJobs(routeId);
+            this.routeJobs = await repository.fetchRoutePointJobs(routeId);
         },
 
         async fetchJob(jobId: number){
