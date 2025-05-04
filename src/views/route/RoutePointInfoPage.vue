@@ -31,11 +31,11 @@ import { useRoute, useRouter } from 'vue-router';
 const route = useRoute();
 const router = useRouter();
 
-const routePointObject = ref();
+const routePointObject = ref(Object);
 
 onMounted(async () => {
-    routePointObject.value = route.query.routePoint;
-    console.log(routePointObject);
+    let query = route.query.routePoint?.toString;
+    console.log(query);
 
 });
 
