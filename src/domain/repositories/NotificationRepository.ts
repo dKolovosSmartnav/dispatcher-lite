@@ -6,6 +6,6 @@ export type Notification = {
     senderChannelId: string
 }
 
-export interface NotificationRepository{
+export interface notificationRepository{
     fetchNotifications(): Promise<Notification[]>
 }

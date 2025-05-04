@@ -12,7 +12,7 @@
 </template>
 
 <script setup lang="ts">
-import { useNotificationStore } from '@/stores/NotificationStore';
+import { useNotificationStore } from '@/stores/notificationStore';
 import { IonContent } from '@ionic/vue';
 import { onMounted } from 'vue';
 

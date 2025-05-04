@@ -1,8 +1,8 @@
-import { Notification } from "@/domain/repositories/NotificationRepository";
-import { NotificationRepositoryImpl } from "@/data/repo/NotificationRepositoryImpl";
+import { Notification } from "@/domain/repositories/notificationRepository";
+import { notificationRepositoryImpl } from "@/data/repo/notificationRepositoryImpl";
 import { defineStore } from 'pinia'
 
-const repository = new NotificationRepositoryImpl();
+const repository = new notificationRepositoryImpl();
 
 export const useNotificationStore = defineStore('notification', {
     state: () => ({
