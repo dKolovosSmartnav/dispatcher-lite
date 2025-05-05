@@ -1,6 +1,6 @@
-import { Notification, NotificationRepository } from "@/domain/repositories/NotificationRepository";
+import { Notification, notificationRepository } from "@/domain/repositories/notificationRepository";
 
-export class LocalNotificationRepository implements NotificationRepository{
+export class localNotificationRepository implements notificationRepository{
     
     async fetchNotifications(): Promise<Notification[]> {
         return new Promise( resolve => {

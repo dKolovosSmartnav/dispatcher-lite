@@ -1,19 +1,41 @@
+export type RoutePointContact = {
+    id: number,
+    name: string,
+    phoneNumber: string,
+    floor?: string,
+    department?: string,
+    nameUnder?: string,
+    notes?: string
+}
+
 export type Location = {
-    lat: Float32Array,
-    lng: Float32Array,
+    id: number,
+    lat: number,
+    lng: number,
     address: string,
-    friendlyAddress: string
+    friendlyAddress?: string,
+    specialInstructions?: string[],
+    notes?: string[]
 }
 
 export type RoutePoint = {
-    type: 'start' | 'end' | 'pickup' | 'delivery' | 'service',
+    id: number,            // UUID
+    orderNumber: number,   // display order
+    type: 'stop',
     location: Location,
     visited: boolean,
-    status: 'cancelled' | 'post-poned' | 'serviced'
+    status: 'cancelled' | 'postponed' | 'serviced',
+    timeWindow: string,
+    contacts: RoutePointContact[],
+    jobs: Job[]
 }
 
-export interface routeRepository{
+
+export interface routeRepository {
     fetchRoutePoints(): Promise<RoutePoint[]>
+    fetchRoutePoint(id: number): Promise<RoutePoint>
     setStatus(routePoint: RoutePoint, status: string): Promise<RoutePoint> /*New route point after update */
     setVisited(routePoint: RoutePoint, isVisited: true): Promise<RoutePoint>
 }
+
+import { Job } from "./jobRepository";

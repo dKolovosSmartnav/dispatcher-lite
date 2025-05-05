@@ -1,5 +1,5 @@
 <template>
-    <ion-item :class="['route-item', routePoint.status]">
+    <ion-item :class="['route-item', routePoint.status]" @click="openRoutePointInfo(routePoint.id)">
         <div>
             <p>{{ routePoint.location.address }}</p>
             <p>{{ routePoint.location.friendlyAddress }}</p>
@@ -13,11 +13,19 @@
 <script setup>
 
 import { IonItem } from '@ionic/vue';
+import { useRouter } from 'vue-router';
+
+
+const router = useRouter();
 
 defineProps({
     routePoint: Object,
     pointType: String
 });
+
+function openRoutePointInfo(routePointId) {
+    router.push({ path: '/routePointInfo', query: { routePointId: routePointId } });
+}
 
 </script>
 

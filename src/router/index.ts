@@ -2,11 +2,17 @@ import { createRouter, createWebHistory } from '@ionic/vue-router';
 import { RouteRecordRaw } from 'vue-router';
 import TabsPage from '../views/home/TabsPage.vue'
 import ChatPage from '@/views/chat/ChatPage.vue';
+import RoutePointInfoPage from '@/views/route/RoutePointInfoPage.vue';
 
 const routes: Array<RouteRecordRaw> = [
+  
   {
     path: '/',
     redirect: '/tabs/'
+  },
+  {
+    path: '/routePointInfo',
+    component: RoutePointInfoPage
   },
   {
     path: '/chat',

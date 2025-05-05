@@ -1,12 +1,12 @@
-import { RemoteNotificationRepository } from "../remote/RemoteNotificationRepository";
-import { LocalNotificationRepository } from "../local/LocalNotificationRepository";
-import { Notification, NotificationRepository } from "@/domain/repositories/NotificationRepository";
+import { remoteNotificationRepository } from "../remote/remoteNotificationRepository";
+import { localNotificationRepository } from "../local/localNotificationRepository";
+import { Notification, notificationRepository } from "@/domain/repositories/notificationRepository";
 import { warn } from "vue";
 
-export class NotificationRepositoryImpl implements NotificationRepository{
+export class notificationRepositoryImpl implements notificationRepository{
 
-    private remote = new RemoteNotificationRepository();
-    private local = new LocalNotificationRepository();
+    private remote = new remoteNotificationRepository();
+    private local = new localNotificationRepository();
     async fetchNotifications(): Promise<Notification[]> {
         try{
             return await this.local.fetchNotifications();
